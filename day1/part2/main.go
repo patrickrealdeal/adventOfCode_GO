@@ -2,12 +2,12 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"os"
 	"sort"
 	"strconv"
-	"strings"
 )
 
 type dwarf struct {
@@ -39,40 +39,38 @@ func main() {
 		log.Fatal(err)
 	}
 
-	s := string(buf)
 	dwarves := []*dwarf{}
 	cals := []*calories{}
 
-	lines := strings.Split(s, "\n\n")
-	for _, line := range lines {
-		elems := strings.Split(strings.TrimSpace(line), "\n")
+	for _, line := range bytes.Split(buf, []byte("\n")) {
+		if string(line) == "" {
+			d := newDwarf()
+			d.cals = cals
+			dwarves = append(dwarves, d)
 
-		for _, e := range elems {
-			n, err := strconv.Atoi(e)
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			c := newCalorie(n)
-			cals = append(cals, c)
+			d = newDwarf()
+			cals = []*calories{}
+			continue
 		}
 
-		d := newDwarf()
-		d.cals = cals
-		dwarves = append(dwarves, d)
+		n, err := strconv.Atoi(string(line))
+		if err != nil {
+			log.Fatal(err)
+		}
 
-		cals = []*calories{}
+		c := newCalorie(n)
+		cals = append(cals, c)
 	}
 
 	for _, d := range dwarves {
-		sum := 0
+		var sum int
 		for _, c := range d.cals {
 			sum += c.amount
 		}
 		d.total = sum
 	}
 
-	sum := 0
+	var sum int
 	total := []int{}
 	for _, d := range dwarves {
 		total = append(total, d.total)
