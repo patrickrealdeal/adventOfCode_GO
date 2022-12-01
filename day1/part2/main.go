@@ -48,7 +48,6 @@ func main() {
 			d.cals = cals
 			dwarves = append(dwarves, d)
 
-			d = newDwarf()
 			cals = []*calories{}
 			continue
 		}
