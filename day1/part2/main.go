@@ -34,7 +34,7 @@ func newCalorie(amount int) *calories {
 }
 
 func main() {
-	buf, err := os.ReadFile("../input.txt")
+	data, err := os.ReadFile("../input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -42,7 +42,7 @@ func main() {
 	dwarves := []*dwarf{}
 	cals := []*calories{}
 
-	for _, line := range bytes.Split(buf, []byte("\n")) {
+	for _, line := range bytes.Split(data, []byte("\n")) {
 		if string(line) == "" {
 			d := newDwarf()
 			d.cals = cals
