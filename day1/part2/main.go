@@ -65,8 +65,8 @@ func main() {
 
 	for _, d := range dwarves {
 		sum := 0
-		for _, v := range d.cals {
-			sum += v.amount
+		for _, c := range d.cals {
+			sum += c.amount
 		}
 		d.total = sum
 	}
@@ -77,25 +77,25 @@ func main() {
 	sum := 0
 
 	for len(top3) < 3 {
-		for i, e := range dwarves {
-			if i == 0 || e.total > max {
-				max = e.total
-				maxCalorie = e
+		for i, dwarf := range dwarves {
+			if i == 0 || dwarf.total > max {
+				max = dwarf.total
+				maxCalorie = dwarf
 			}
 		}
 
 		top3 = append(top3, maxCalorie)
 
-		for i, c := range dwarves {
-			if c.total == maxCalorie.total {
+		for i, d := range dwarves {
+			if d.total == maxCalorie.total {
 				dwarves = append(dwarves[:i], dwarves[i+1:]...)
 			}
 		}
 		maxCalorie = &dwarf{}
 	}
 
-	for _, v := range top3 {
-		sum += v.total
+	for _, t := range top3 {
+		sum += t.total
 	}
 
 	fmt.Println(sum)
