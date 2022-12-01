@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -71,31 +72,16 @@ func main() {
 		d.total = sum
 	}
 
-	max := 0
-	maxCalorie := &dwarf{}
-	top3 := []*dwarf{}
 	sum := 0
-
-	for len(top3) < 3 {
-		for i, dwarf := range dwarves {
-			if i == 0 || dwarf.total > max {
-				max = dwarf.total
-				maxCalorie = dwarf
-			}
-		}
-
-		top3 = append(top3, maxCalorie)
-
-		for i, d := range dwarves {
-			if d.total == maxCalorie.total {
-				dwarves = append(dwarves[:i], dwarves[i+1:]...)
-			}
-		}
-		maxCalorie = &dwarf{}
+	total := []int{}
+	for _, d := range dwarves {
+		total = append(total, d.total)
 	}
 
-	for _, t := range top3 {
-		sum += t.total
+	sort.Ints(total)
+	res := total[len(total)-3:]
+	for _, v := range res {
+		sum += v
 	}
 
 	fmt.Println(sum)
