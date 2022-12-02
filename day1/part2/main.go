@@ -61,20 +61,17 @@ func main() {
 		cals = append(cals, c)
 	}
 
+	total := []int{}
 	for _, d := range dwarves {
 		var sum int
 		for _, c := range d.cals {
 			sum += c.amount
 		}
 		d.total = sum
-	}
-
-	var sum int
-	total := []int{}
-	for _, d := range dwarves {
 		total = append(total, d.total)
 	}
 
+	var sum int
 	sort.Ints(total)
 	res := total[len(total)-3:]
 	for _, v := range res {
