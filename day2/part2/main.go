@@ -25,11 +25,19 @@ func main() {
 		log.Fatal(err)
 	}
 
+	oppmoves := make(map[int]string)
+	oppmoves[Rock] = "A"
+	oppmoves[Paper] = "B"
+	oppmoves[Scissors] = "C"
+	mymoves := make(map[int]string)
+	mymoves[Rock] = "X"
+	mymoves[Paper] = "Y"
+	mymoves[Scissors] = "Z"
+
 	points := make(map[string]int)
 	points["A"] = Rock
 	points["B"] = Paper
 	points["C"] = Scissors
-
 	points["X"] = Rock
 	points["Y"] = Paper
 	points["Z"] = Scissors
@@ -39,32 +47,32 @@ func main() {
 		ln := bytes.Split(line, []byte(" "))
 		oppMove, myMove := string(ln[0]), string(ln[1])
 
-		if myMove == "X" {
-			if oppMove == "A" {
+		if myMove == mymoves[Rock] {
+			if oppMove == oppmoves[Rock] {
 				result += lost + Scissors
 			}
-			if oppMove == "B" {
+			if oppMove == oppmoves[Paper] {
 				result += lost + Rock
 			}
-			if oppMove == "C" {
+			if oppMove == oppmoves[Scissors] {
 				result += lost + Paper
 			}
 			continue
 		}
 
-		if myMove == "Y" {
+		if myMove == mymoves[Paper] {
 			result += draw + points[oppMove]
 			continue
 		}
 
-		if myMove == "Z" {
-			if oppMove == "A" {
+		if myMove == mymoves[Scissors] {
+			if oppMove == oppmoves[Rock] {
 				result += won + Paper
 			}
-			if oppMove == "B" {
+			if oppMove == oppmoves[Paper] {
 				result += won + Scissors
 			}
-			if oppMove == "C" {
+			if oppMove == oppmoves[Scissors] {
 				result += won + Rock
 			}
 			continue
