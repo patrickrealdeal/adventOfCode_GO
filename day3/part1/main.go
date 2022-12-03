@@ -36,8 +36,8 @@ func main() {
 	for _, line := range bytes.Split(data, []byte("\n")) {
 		left, right := line[:len(line)/2], line[len(line)/2:]
 
-		for _, v := range line {
-			appeard[v]++
+		for _, c := range line {
+			appeard[c]++
 		}
 
 		for k, value := range appeard {
@@ -47,9 +47,9 @@ func main() {
 			appeard[k] = 0
 		}
 
-		for _, v := range letters {
-			if bytes.ContainsRune(left, rune(v)) && bytes.ContainsRune(right, rune(v)) {
-				res += points[v]
+		for _, letter := range letters {
+			if bytes.ContainsRune(left, rune(letter)) && bytes.ContainsRune(right, rune(letter)) {
+				res += points[letter]
 			}
 		}
 

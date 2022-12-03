@@ -51,11 +51,11 @@ func main() {
 				appeard[k] = 0
 			}
 
-			for _, v := range letters {
-				if bytes.ContainsRune(block[0], rune(v)) &&
-					bytes.ContainsRune(block[1], rune(v)) &&
-					bytes.ContainsRune(block[2], rune(v)) {
-					res += points[v]
+			for _, letter := range letters {
+				if bytes.ContainsRune(block[0], rune(letter)) &&
+					bytes.ContainsRune(block[1], rune(letter)) &&
+					bytes.ContainsRune(block[2], rune(letter)) {
+					res += points[letter]
 				}
 			}
 			block = [][]byte{}
