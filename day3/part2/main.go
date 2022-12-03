@@ -15,6 +15,7 @@ func main() {
 	}
 
 	uppercase := []byte{}
+	lowercase := []byte{}
 	points := make(map[byte]int)
 	appeard := make(map[byte]int)
 
@@ -24,7 +25,6 @@ func main() {
 		appeard[byte(i)] = 0
 	}
 
-	lowercase := []byte{}
 	for i, n := 'a', 0; i <= 'z'; i, n = i+1, n+1 {
 		lowercase = append(lowercase, byte(i))
 		points[byte(i)] = n + 1
