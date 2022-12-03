@@ -67,7 +67,9 @@ func main() {
 			}
 
 			for _, v := range letters {
-				if bytes.Contains(block[0], []byte(string(v))) && bytes.Contains(block[1], []byte(string(v))) && bytes.Contains(block[2], []byte(string(v))) {
+				if bytes.Contains(block[0], []byte(string(v))) &&
+					bytes.Contains(block[1], []byte(string(v))) &&
+					bytes.Contains(block[2], []byte(string(v))) {
 					res += points[v]
 				}
 			}
