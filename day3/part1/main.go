@@ -14,22 +14,22 @@ func main() {
 		log.Fatal(err)
 	}
 
-	uppercase := []byte{}
-	lowercase := []byte{}
+	alphabet := []byte{}
 	points := make(map[byte]int)
 	appeard := make(map[byte]int)
 
 	for i, n := 'A', 26; i <= 'Z'; i, n = i+1, n+1 {
-		uppercase = append(uppercase, byte(i))
+		alphabet = append(alphabet, byte(i))
 		points[byte(i)] = n + 1
 		appeard[byte(i)] = 0
 	}
 
 	for i, n := 'a', 0; i <= 'z'; i, n = i+1, n+1 {
-		lowercase = append(lowercase, byte(i))
+		alphabet = append(alphabet, byte(i))
 		points[byte(i)] = n + 1
 		appeard[byte(i)] = 0
 	}
+
 	res := 0
 	letters := []byte{}
 
@@ -37,29 +37,16 @@ func main() {
 		left, right := line[:len(line)/2], line[len(line)/2:]
 
 		for _, v := range left {
-			if _, ok := appeard[v]; ok {
-				appeard[v]++
-			}
+			appeard[v]++
 		}
 
 		for _, v := range right {
-			if _, ok := appeard[v]; ok {
-				appeard[v]++
-			}
+			appeard[v]++
 		}
 
-		for _, v := range lowercase {
+		for _, v := range alphabet {
 			if value, ok := appeard[v]; ok {
-				if value > 1 {
-					letters = append(letters, v)
-				}
-			}
-			appeard[v] = 0
-		}
-
-		for _, v := range uppercase {
-			if value, ok := appeard[v]; ok {
-				if value > 1 {
+				if value >= 2 {
 					letters = append(letters, v)
 				}
 			}
@@ -67,7 +54,7 @@ func main() {
 		}
 
 		for _, v := range letters {
-			if bytes.Contains(left, []byte(string(v))) && bytes.Contains(right, []byte(string(v))) {
+			if bytes.ContainsRune(left, rune(v)) && bytes.ContainsRune(right, rune(v)) {
 				res += points[v]
 			}
 		}

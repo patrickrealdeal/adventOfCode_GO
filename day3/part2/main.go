@@ -14,19 +14,18 @@ func main() {
 		log.Fatal(err)
 	}
 
-	uppercase := []byte{}
-	lowercase := []byte{}
+	alphabet := []byte{}
 	points := make(map[byte]int)
 	appeard := make(map[byte]int)
 
 	for i, n := 'A', 26; i <= 'Z'; i, n = i+1, n+1 {
-		uppercase = append(uppercase, byte(i))
+		alphabet = append(alphabet, byte(i))
 		points[byte(i)] = n + 1
 		appeard[byte(i)] = 0
 	}
 
 	for i, n := 'a', 0; i <= 'z'; i, n = i+1, n+1 {
-		lowercase = append(lowercase, byte(i))
+		alphabet = append(alphabet, byte(i))
 		points[byte(i)] = n + 1
 		appeard[byte(i)] = 0
 	}
@@ -48,7 +47,7 @@ func main() {
 				}
 			}
 
-			for _, lower := range lowercase {
+			for _, lower := range alphabet {
 				if value, ok := appeard[lower]; ok {
 					if value >= 3 {
 						letters = append(letters, lower)
@@ -57,19 +56,10 @@ func main() {
 				appeard[lower] = 0
 			}
 
-			for _, upper := range uppercase {
-				if value, ok := appeard[upper]; ok {
-					if value >= 3 {
-						letters = append(letters, upper)
-					}
-				}
-				appeard[upper] = 0
-			}
-
 			for _, v := range letters {
-				if bytes.Contains(block[0], []byte(string(v))) &&
-					bytes.Contains(block[1], []byte(string(v))) &&
-					bytes.Contains(block[2], []byte(string(v))) {
+				if bytes.ContainsRune(block[0], rune(v)) &&
+					bytes.ContainsRune(block[1], rune(v)) &&
+					bytes.ContainsRune(block[2], rune(v)) {
 					res += points[v]
 				}
 			}
