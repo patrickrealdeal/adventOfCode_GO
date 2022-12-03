@@ -1,3 +1,3 @@
-module adventOfCode/day1
+module adventOfCode
 
 go 1.19
