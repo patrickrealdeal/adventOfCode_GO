@@ -49,7 +49,7 @@ func main() {
 
 			for _, lower := range lowercase {
 				if value, ok := appeard[lower]; ok {
-					if value >= 2 {
+					if value >= 3 {
 						letters = append(letters, lower)
 					}
 				}
@@ -58,7 +58,7 @@ func main() {
 
 			for _, upper := range uppercase {
 				if value, ok := appeard[upper]; ok {
-					if value > 2 {
+					if value >= 3 {
 						letters = append(letters, upper)
 					}
 				}
