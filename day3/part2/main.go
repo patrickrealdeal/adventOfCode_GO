@@ -35,25 +35,20 @@ func main() {
 	block := [][]byte{}
 
 	for i, line := range bytes.Split(data, []byte("\n")) {
-
 		block = append(block, line)
 
 		if i%3 == 2 {
 			for _, elem := range block {
 				for _, c := range elem {
-					if _, ok := appeard[c]; ok {
-						appeard[c]++
-					}
+					appeard[c]++
 				}
 			}
 
-			for _, lower := range alphabet {
-				if value, ok := appeard[lower]; ok {
-					if value >= 3 {
-						letters = append(letters, lower)
-					}
+			for k, value := range appeard {
+				if value >= 3 {
+					letters = append(letters, k)
 				}
-				appeard[lower] = 0
+				appeard[k] = 0
 			}
 
 			for _, v := range letters {

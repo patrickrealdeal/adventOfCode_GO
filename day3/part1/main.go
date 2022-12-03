@@ -36,21 +36,15 @@ func main() {
 	for _, line := range bytes.Split(data, []byte("\n")) {
 		left, right := line[:len(line)/2], line[len(line)/2:]
 
-		for _, v := range left {
+		for _, v := range line {
 			appeard[v]++
 		}
 
-		for _, v := range right {
-			appeard[v]++
-		}
-
-		for _, v := range alphabet {
-			if value, ok := appeard[v]; ok {
-				if value >= 2 {
-					letters = append(letters, v)
-				}
+		for k, value := range appeard {
+			if value >= 2 {
+				letters = append(letters, k)
 			}
-			appeard[v] = 0
+			appeard[k] = 0
 		}
 
 		for _, v := range letters {
