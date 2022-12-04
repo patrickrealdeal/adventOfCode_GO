@@ -17,10 +17,7 @@ func main() {
 	res := 0
 
 	for _, line := range bytes.Split(data, []byte("\n")) {
-		comma := bytes.Split(line, []byte(","))
-		left, right := bytes.Split(comma[0], []byte("-")), bytes.Split(comma[1], []byte("-"))
-		l1, l2 := toInt(left[0]), toInt(left[1])
-		r1, r2 := toInt(right[0]), toInt(right[1])
+		l1, l2, r1, r2 := parseLine(line)
 
 		if l1 <= r1 && l2 >= r2 {
 			res += 1
@@ -42,6 +39,14 @@ func toInt(b []byte) int {
 		panic(err)
 	}
 	return i
+}
+
+func parseLine(line []byte) (a, b, c, d int) {
+	comma := bytes.Split(line, []byte(","))
+	left, right := bytes.Split(comma[0], []byte("-")), bytes.Split(comma[1], []byte("-"))
+	a, b = toInt(left[0]), toInt(left[1])
+	c, d = toInt(right[0]), toInt(right[1])
+	return
 }
 
 //487
