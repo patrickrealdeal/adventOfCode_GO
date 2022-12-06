@@ -11,17 +11,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	line := string(data)
 
 	chunk := 4
-	res := processed(line, chunk)
+	res := processed(data, chunk)
 	fmt.Println(res)
 }
 
-func processed(line string, chunk int) int {
-	for i := 0; i < len(line)-chunk; i++ {
-		check := line[i : i+chunk]
-		uniques := make(map[rune]bool)
+func processed(data []byte, chunk int) int {
+	for i := 0; i < len(data)-chunk; i++ {
+		check := data[i : i+chunk]
+		uniques := make(map[byte]bool)
 
 		for _, c := range check {
 			uniques[c] = true
