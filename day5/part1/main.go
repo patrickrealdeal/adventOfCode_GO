@@ -23,8 +23,8 @@ func main() {
 	lines := string(data)
 
 	s := &stack{
-		cols:  make(map[int][]string),
-		moves: make(map[int][]int),
+		cols:  make(map[int][]string, 9),
+		moves: make(map[int][]int, 502),
 	}
 	m := strings.Index(lines, "m")
 	movs := lines[m:]

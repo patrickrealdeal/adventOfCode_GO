@@ -15,8 +15,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	alphabet := []byte{}
-	points := make(map[byte]int)
+	alphabet := make([]byte, 52)
+	points := make(map[byte]int, 52)
 	appeard := intset.IntSet{}
 
 	for i, n := 'A', 26; i <= 'Z'; i, n = i+1, n+1 {

@@ -2,11 +2,11 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"log"
 	"os"
 	"strconv"
-	"strings"
 )
 
 type calories struct {
@@ -20,22 +20,21 @@ func newCalorie(amount int) *calories {
 }
 
 func main() {
-	buf, err := os.ReadFile("day1/input.txt")
+	buf, err := os.ReadFile("input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	s := string(buf)
 	c := []int{}
 	cals := []*calories{}
 
-	lines := strings.Split(s, "\n\n")
-	for _, s := range lines {
-		trim := strings.Trim(s, "\n")
-		elems := strings.Split(trim, "\n")
+	lines := bytes.Split(buf, []byte("\n\n"))
+	for _, line := range lines {
+		trim := bytes.Trim(line, "\n")
+		elems := bytes.Split(trim, []byte("\n"))
 		for _, e := range elems {
-			trimmed := strings.TrimSuffix(e, "\n")
-			n, err := strconv.Atoi(trimmed)
+			trimmed := bytes.TrimSuffix(e, []byte("\n"))
+			n, err := strconv.Atoi(string(trimmed))
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -61,3 +60,5 @@ func main() {
 
 	fmt.Println(max)
 }
+
+// 70116
