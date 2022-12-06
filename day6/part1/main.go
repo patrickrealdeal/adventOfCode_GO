@@ -20,7 +20,7 @@ func main() {
 func processed(data []byte, chunk int) int {
 	for i := 0; i < len(data)-chunk; i++ {
 		check := data[i : i+chunk]
-		uniques := make(map[byte]struct{})
+		uniques := make(map[byte]struct{}, chunk)
 
 		for _, c := range check {
 			uniques[c] = struct{}{}
