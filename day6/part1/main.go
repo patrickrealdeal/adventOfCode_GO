@@ -20,10 +20,10 @@ func main() {
 func processed(data []byte, chunk int) int {
 	for i := 0; i < len(data)-chunk; i++ {
 		check := data[i : i+chunk]
-		uniques := make(map[byte]bool)
+		uniques := make(map[byte]struct{})
 
 		for _, c := range check {
-			uniques[c] = true
+			uniques[c] = struct{}{}
 		}
 
 		if len(uniques) == chunk {
