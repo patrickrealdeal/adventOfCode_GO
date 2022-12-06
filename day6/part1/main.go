@@ -32,7 +32,7 @@ func processed(data []byte, chunk int) int {
 		}
 	}
 
-	return 0
+	return -1
 }
 
 // 1566
