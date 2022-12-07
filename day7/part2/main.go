@@ -33,7 +33,6 @@ func main() {
 	fs := filesystem{sizes: make(map[string]int)}
 
 	for _, line := range strings.Split(lines, "\n") {
-
 		switch fs.parse(line) {
 		case root:
 			fs.dirs = []string{"/"}
@@ -51,7 +50,6 @@ func main() {
 			}
 		default:
 			continue
-
 		}
 	}
 
@@ -73,7 +71,6 @@ func main() {
 
 func (fs *filesystem) parse(s string) int {
 	if ok, _ := regexp.Match("\\$ cd /$", []byte(s)); ok {
-
 		return root
 	}
 	if ok, _ := regexp.Match("\\$ cd \\.\\.", []byte(s)); ok {
