@@ -79,9 +79,9 @@ func parse(s string) int {
 }
 
 func computeSize(s string) int {
-	ss := strings.Split(s, " ")
-	v, _ := strconv.Atoi(ss[0])
-	return v
+	number := strings.Split(s, " ")
+	n, _ := strconv.Atoi(number[0])
+	return n
 }
 
 // 1432936
