@@ -20,7 +20,7 @@ func newCalorie(amount int) *calories {
 }
 
 func main() {
-	buf, err := os.ReadFile("input.txt")
+	buf, err := os.ReadFile("../input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}

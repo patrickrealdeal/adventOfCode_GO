@@ -20,7 +20,7 @@ const (
 )
 
 func main() {
-	data, err := os.ReadFile("input.txt")
+	data, err := os.ReadFile("../input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -49,3 +49,5 @@ func main() {
 
 	fmt.Println(result)
 }
+
+// 11906

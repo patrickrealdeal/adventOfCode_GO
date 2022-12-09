@@ -22,7 +22,7 @@ type filesystem struct {
 }
 
 func main() {
-	data, err := os.ReadFile("input.txt")
+	data, err := os.ReadFile("../input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
