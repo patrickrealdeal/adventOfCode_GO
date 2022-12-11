@@ -24,12 +24,11 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	lines := string(data)
 
-	monkeys := []*monkey{}
 	var total uint64
 	var boundCheck uint64 = 1
+	monkeys := []*monkey{}
 	line := strings.Split(lines, "\n\n")
 
 	for _, ln := range line {
