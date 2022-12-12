@@ -27,23 +27,22 @@ func main() {
 	lines := string(data)
 
 	var total uint64
+	var op func(uint64) uint64
 	monkeys := []*monkey{}
 	line := strings.Split(lines, "\n\n")
 
-	for _, ln := range line {
-		r := strings.Split(ln, "\n")
-		mn, _ := strconv.ParseUint(string(r[0][7]), 10, 64)
-		ns := strings.Split(r[1][18:], ",")
+	for _, v := range line {
+		line := strings.Split(v, "\n")
+		n, _ := strconv.ParseUint(string(line[0][7]), 10, 64)
+		ns := strings.Split(line[1][18:], ", ")
 		items := []uint64{}
 
 		for _, v := range ns {
-			v = strings.Trim(v, " ")
 			item, _ := strconv.ParseUint(v, 10, 64)
 			items = append(items, item)
 		}
 
-		var op func(uint64) uint64
-		ops := strings.Split(r[2][23:], " ")
+		ops := strings.Split(line[2][23:], " ")
 
 		if strings.Contains(ops[1], "old") {
 			op = func(u uint64) uint64 {
@@ -62,12 +61,12 @@ func main() {
 			}
 		}
 
-		test, _ := strconv.ParseUint(string(r[3][21:]), 10, 64)
-		pos, _ := strconv.ParseUint(string(r[4][len(r[4])-1]), 10, 64)
-		neg, _ := strconv.ParseUint(string(r[5][len(r[5])-1]), 10, 64)
+		test, _ := strconv.ParseUint(string(line[3][21:]), 10, 64)
+		pos, _ := strconv.ParseUint(string(line[4][len(line[4])-1]), 10, 64)
+		neg, _ := strconv.ParseUint(string(line[5][len(line[5])-1]), 10, 64)
 
 		monkey := &monkey{
-			N:         mn,
+			N:         n,
 			Items:     items,
 			Operation: op,
 			Pos:       pos,
